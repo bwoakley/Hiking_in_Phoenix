@@ -38,7 +38,9 @@ From __Misc\EDA1.sql__ :
 
 ![image](Misc/table2_from_EDA1.jpg)
 
-The above query tells us that there are 397 unique sites. Notice that many of the Sites are related. For example, "E - PMP - Trail 9144" and "E - PMP - Trail 3320" are in the same park, but different trails. 
+The above query uses the __GROUP BY__ statement to count the number of rows (measurements) corresponding to each site name. 
+
+From this query, we see that there are 397 unique sites. Notice that many of the Sites are related. For example, "E - Dreamy Draw Park -Trail 100" and "E - Dreamy Draw Park -Trail 101" are in the same park, but they are different trails. 
 
 
 From __Misc\EDA3.sql__ :
@@ -52,14 +54,15 @@ From __Misc\EDA3.sql__ :
 
 ![image](Misc/table_from_EDA3.jpg)
 
+The above query groups by and orders by __Date__, counting the number of measurements per day.
+We gain two insights from this query.
 
+First, we notice that the data ranges from "1/1/2019" to "12/31/2022" and contains readings from every single day in that range.  We confirm that there are a total of 1461 days worth of data from "1/1/2019" to "12/31/2022".
 
-Still following "E - Camelback - Cholla Trail", we ask did they try to detect hikers on every day? 
-How many days are there from the first to last reading? 
-We confirm that there are a total of 1461 days worth of data from "1/1/2019" to "12/31/2022".
-We also notice that the group originally began with 46 sensors and ended the experiment with 43 sensors.
+Second, we also notice that the city researchers originally began with 46 sensors and ended the experiment with 43 sensors.
 
-From this query, we start to understand the scope of the data set.
+We are starting to understand the scope of the data set.
+
 
 
 ## Preprocessing and Cleaning with SQL
