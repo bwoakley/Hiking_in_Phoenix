@@ -11,9 +11,22 @@ The GitHub page for this project contains the following files. All code is writt
 - [ ] __Hiking_Trails_Counter.csv__ : Hiking Trails Counter data set
 - [ ] __Phoenix_Sky_Harbor_Daily_Temps.csv__ : Phoenix Sky Harbor Daily Temps data set
 
+## The Data Sets
+
+Below, we see a header of both data sets considered in the project.
+![image](Misc/datasets.jpg)
+
+Each row of __Hiking_Trails_Counter.csv__ corresponds to a sensor reading. The features are the __Date__ of the reading, the __Site__ location, and the __Count__ of the number of hikers.
+Notice that there are multiple readings for each __Date__ because there are multiple sensors.
+
+Each row of __Phoenix_Sky_Harbor_Daily_Temps.csv__ is a summary of the temperature for the day. The features are the __Date__ of the reading, the maximum temperature for the day __MaxT__, the minimum temperature for the day __MinT__, and a sensor error flag __PIT_Flag__. This data set contains readings all the way back to the year 1900 and is an extremely interesting dataset to explore in its own right.
+
+
 ## Exploratory Data Analysis (EDA) with SQL
 
-The files __Misc\EDA1.sql__, __Misc\EDA2.sql__, ...,  __Misc\EDA6.sql__ contain various SQL queries that explore the data and help define the scope of the project. We now outline some notable insights in the files.
+The files __Misc\EDA1.sql__, __Misc\EDA2.sql__, ...,  __Misc\EDA6.sql__ contain various SQL queries that explore the data and help define the scope of the project. We now outline some notable insights in the EDA files.
+
+
 
 From __Misc\EDA1.sql__ :
 
@@ -22,24 +35,29 @@ From __Misc\EDA1.sql__ :
 	GROUP BY dbo.hiking.Site
 	ORDER BY dbo.hiking.Site
 	
+
 ![image](Misc/table2_from_EDA1.jpg)
 
-How many different sites are there? There are 397 of them:
-
-Notice that many of the Sites are related. 
-For example, "E - PMP - Trail 9144" and "E - PMP - Trail 3320" are in the same park, but different trails.
+The above query tells us that there are 397 unique sites. Notice that many of the Sites are related. For example, "E - PMP - Trail 9144" and "E - PMP - Trail 3320" are in the same park, but different trails. 
 
 
 From __Misc\EDA3.sql__ :
 
-	-- Still following "E - Camelback - Cholla Trail", we ask did they try to detect hikers on every day? 
-	-- How many days are there from the first to last reading? 
+	
 	SELECT COUNT(dbo.hiking.Date) AS 'Num of sites measured', dbo.hiking.Date  
 	FROM dbo.hiking
 	GROUP BY dbo.hiking.Date
 	ORDER BY YEAR(dbo.hiking.Date), MONTH(dbo.hiking.Date), DAY(dbo.hiking.Date) 
-	-- We confirm that there are a total of 1461 days worth of data from "1/1/2019" to "12/31/2022".
-	-- We also notice that the group originally began with 46 sensors and ended the experiment with 43 sensors.
+	
+
+![image](Misc/table_from_EDA3.jpg)
+
+
+
+Still following "E - Camelback - Cholla Trail", we ask did they try to detect hikers on every day? 
+How many days are there from the first to last reading? 
+We confirm that there are a total of 1461 days worth of data from "1/1/2019" to "12/31/2022".
+We also notice that the group originally began with 46 sensors and ended the experiment with 43 sensors.
 
 From this query, we start to understand the scope of the data set.
 
