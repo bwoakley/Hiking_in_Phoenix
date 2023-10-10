@@ -1,7 +1,17 @@
 # Hiking in Phoenix
 
 ## Summary
-We investigate two data sets using popular Data Analysis tools: SQL and Tableau. The first data set consists of sensor data from various hiking trails in the city of Phoenix, Arizona. The data set can be found on the [City of Phoenix's Open Data Portal](https://www.phoenixopendata.com/dataset/hiking-trail-usage/resource/aa4e2a08-c0ad-4fc4-bee9-44c2d85a58fa). The sensors are set up along various trails in the city and count the number of hikers that use the trail. The data is "raw" in the sense that the sensors sometimes include errors or missing values. Therefore, our first step will be to load the data into a relational data base and query it with SQL to preprocess and clean the data. Additionally, we enrich this data set by joining a table containing the daily weather in Phoenix. This data set can be obtained from the [City of Mesa's Data Portal](https://citydata.mesaaz.gov/Environmental-and-Sustainability/Phoenix-Sky-Harbor-Daily-Temps/5auc-zhuc). The data comes from temperature readings at the Phoenix Sky Harbor Airport, and it includes maximum and minimum daily temperature. We use this data set to help explain some of the patterns in the hiking trends. Finally, we visualize our insights using the visualization software, Tableau.
+
+I recently moved to Phoenix, Arizona for work, and I am eager to learn more about the city and and its culture. As an avid hiker and data scientist, I found that studying the trends of Pheonix's vibrant and active population is a natural way to discover interesting activities and meet like-minded individuals. 
+
+In this project, I use the popular Data Analysis tools __SQL__ and __Tableau__ to investigate which hiking trails in the city are most popular and what factors may influence that activity. Some fun insights and conclusions that we will discover in this project are that there is a significant correlation between number of hikers on the trails and the weather (most of the hiking happens in Phoenix's winters) and that there is much more hiking happening on the weekends. We will also see that some hiking trails are still active in the summer, indicating that the trail may be shady and a way to escape the heat! 
+
+## Description
+
+We investigate two data sets using popular Data Analysis tools: SQL and Tableau. The first data set consists of sensor data from various hiking trails in the city of Phoenix, Arizona. The data set can be found on the [City of Phoenix's Open Data Portal](https://www.phoenixopendata.com/dataset/hiking-trail-usage/resource/aa4e2a08-c0ad-4fc4-bee9-44c2d85a58fa). The sensors are set up along various trails in the city and count the number of hikers that use the trail. The data is "raw" in the sense that the sensors sometimes include errors or missing values. Therefore, our first step will be to load the data into a relational data base and query it with SQL to preprocess and clean the data. 
+
+Additionally, we enrich this data set by joining a table containing the daily weather in Phoenix. This data set can be obtained from the [City of Mesa's Data Portal](https://citydata.mesaaz.gov/Environmental-and-Sustainability/Phoenix-Sky-Harbor-Daily-Temps/5auc-zhuc). The data comes from temperature readings at the Phoenix Sky Harbor Airport, and it includes maximum and minimum daily temperature. We use this data set to help explain some of the patterns in the hiking trends. Finally, we visualize our insights using the visualization software, Tableau. You can skip directly to the [Visualization with Tableau section by clicking here](#visualization-with-tableau).
+
 
 ## Files
 The GitHub page for this project contains the following files. All code is written in SQL Server (version 16.0.1000).
