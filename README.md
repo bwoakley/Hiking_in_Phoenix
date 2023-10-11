@@ -215,13 +215,42 @@ See the [Phoenix Hiking Viz](https://public.tableau.com/views/PhoenixHikingViz/P
 
 ![image](Images/story_1.jpg)
 
-We now wish to discuss the insights gained from this page of the visualization.
+We now wish to discuss the __insights__ gained from this page of the visualization. 
+
+Notice that the first graph depicts the Monthly Share by Site, the monthly hiker count numbers for the 7 most popular hiking sites. There is a seasonal trend, where __people hike more in the winter__. Let's explore that trend further. 
+
+In the third graph, we see Hiking Count by Weather Category. Most of the hiking occurs in the blue zone, when the weather is categorized as "Ideal", that is 80 degrees Fahrenheit or less. 
+
+In the fourth graph, you also see the Monthly Max Temp. During the summer, the Max Temp gets above 110 degrees! As one would expect, there is much less total hiking during the Summer.
+
+The second graph, Hiking Count on Weekday vs Weekend shows a different kind of trend in the hiker counts: __people hike more on the weekend__. The graph shows the daily average hiker count on the weekend in orange and the daily average hiker count on the weekday in blue. During the winter, there is almost twice as much hiking happening on the weekend as there is during the weekday. Surprisingly, this phenomenon does not extend to the summer. There is not much difference between weekday and weekend hiking in the summer. 
 
 The second page of the story is:
 
 ![image](Images/story_2.jpg)
 
-Concerning the insights gained from this page of the visualization.
+Concerning the insights gained from this page of the visualization, we first observe that there is a negative correlation between the hiker count and max temperature for all hiking sites. That is, __an increase in max temperature corresponds to a decrease in hiker count__.  This can be seen in the first two graphs.
+
+The graph on the top left is a Scatter Plot of Daily Counts vs Max Temp. You can see the general downward trend in Count as we move to the right along the Max Temp axis.
+
+The graph on the top right is the Monthly Count vs Monthly Max Temp. We aggregate the count and temperature data to average out the sensor error noise, as discussed in the previous section. This allows us to more easily see the downward trend and fit a line of best fit using linear regression within Tableau Analytics. Notice that the red and green line in this graph do not have the same slope. This leads us to a second insight: __some hiking sites are not affected as much by increased temperature__. Notice that the red line has a steep slope, so an increase in max temperature is related to a large decrease in hiker count for the E - PMP - Piestewa Summit Trail. However the green line is much flatter of a slope, implying that an increase in max temperature does not decrease hiker count by much for the 
+N - North Mountain - 44-Tower Road trail. Perhaps this North Mountain trail is shady, and so the hikers are willing to hike even if it is too hot? This is a discovery that I may try out myself this next summer for my own hikes!
+
+The bottom graph, Average Count given fixed Max Temp, helps us visualize one more pattern. The graph plots the Average Count for a given Max Temperature value. That is, take the graph on the top left and collapse all of the data points vertically by taking an average of the Count for each Max Temp value. This helps us average out the variation in hiker count and try to understand how the average count varies depending on the max temperature. We see an interesting pattern: __hikers don't want to hike if it is too cold__. The curve plotted is a degree 3 polynomial of best fit using linear regression within Tableau Analytics. The curve peaks at around 72 degrees. From 72 degrees, increasing the temperature slowly decreases hiker count (the curve has a shallow slope). However, from 72 degrees, decreasing the temperature rapidly decreases hiker count (the curve has a steep slope).
+
+## Conclusions
+
+We have used SQL queries to process our data and Tableau to visualize the data. Both were necessary steps in this analysis project. The SQL queries helped us understand the scope of the data through Exploratory Data Analysis, and they helped us manipulate the data so that it is in a format useful for Tableau. Through the Tableau visualizations, we discovered various insights:
+- [ ] people hike more in the winter
+- [ ] people hike more on the weekend
+- [ ] an increase in max temperature corresponds to a decrease in hiker count
+- [ ] some hiking sites are not affected as much by increased temperature
+- [ ] hikers don’t want to hike if it is too cold
+
+Some of these insights may seem obvious, but it is important to note that these are evidence based insights backed up by the data. Indeed, one could use statistics to measure the validity of these insights, providing numerical estimates and confidence intervals.
+
+Thank you for reading this project write-up! Take care. : )
+
 
 ## References
 - [ ] The Hiking Trails Counter data set is found at: [City of Phoenix's Open Data Portal](https://www.phoenixopendata.com/dataset/hiking-trail-usage/resource/aa4e2a08-c0ad-4fc4-bee9-44c2d85a58fa)
