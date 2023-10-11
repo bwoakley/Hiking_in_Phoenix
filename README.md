@@ -17,6 +17,7 @@ Additionally, we enrich this data set by joining a table containing the daily we
 The GitHub page for this project contains the following files. All code is written in SQL Server (version 16.0.1000).
 - [ ] __popular_hiking.sql__ : Main file that extracts the most popular hiking trails and joins with the weather data
 - [ ] __popular_hiking_aggregate.sql__ : Main file that returns the monthly average trail counts and monthly average max temperature
+- [ ] __popular_hiking_weekend__ :
 - [ ] __Misc\EDA1.sql__ - __Misc\EDA6.sql__ : SQL queries conducting Exploratory Data Analysis
 - [ ] __Hiking_Trails_Counter.csv__ : Hiking Trails Counter data set
 - [ ] __Phoenix_Sky_Harbor_Daily_Temps.csv__ : Phoenix Sky Harbor Daily Temps data set
@@ -24,7 +25,7 @@ The GitHub page for this project contains the following files. All code is writt
 ## The Data Sets
 
 Below, we see a header of both data sets considered in the project.
-![image](Misc/datasets.jpg)
+![image](Images/datasets.jpg)
 
 Each row of __Hiking_Trails_Counter.csv__ corresponds to a sensor reading. The features are the __Date__ of the reading, the __Site__ location, and the __Count__ of the number of hikers.
 Notice that there are multiple readings for each __Date__ because there are multiple sensors.
@@ -46,7 +47,7 @@ From __Misc\EDA1.sql__ :
 	ORDER BY dbo.hiking.Site
 	
 
-![image](Misc/table2_from_EDA1.jpg)
+![image](Images/table2_from_EDA1.jpg)
 
 The above query uses the __GROUP BY__ statement to count the number of rows (measurements) corresponding to each site name. 
 
@@ -62,7 +63,7 @@ From __Misc\EDA3.sql__ :
 	ORDER BY YEAR(dbo.hiking.Date), MONTH(dbo.hiking.Date), DAY(dbo.hiking.Date) 
 	
 
-![image](Misc/table_from_EDA3.jpg)
+![image](Images/table_from_EDA3.jpg)
 
 The above query groups by and orders by __Date__, counting the number of measurements per day.
 We gain two insights from this query.
@@ -95,7 +96,7 @@ From __Misc\EDA5.sql__ :
 	LEFT JOIN measured ON visits.v_site = measured.m_site
 	ORDER BY visits.total_visits DESC, measured.times_measured DESC
 
-![image](Misc/table_from_EDA5.jpg)
+![image](Images/table_from_EDA5.jpg)
 
 The above query uses the __WITH__ clause to create two sub-query tables: __visits__ and __measured__. The  __visits__ table computes the total visits for each site, and the __measured__ table computes the number of times that each site was measured. We join these two sub-query tables on the __Site__ name. Lastly, we order by total visits and times measured in descending order.
 
@@ -141,7 +142,7 @@ From __popular_hiking.sql__ :
 		AND dbo.hiking.Count < 2500 -- Trims 15 entries, from 9392 to 9377
 
 
-![image](Misc/table_from_popular_hiking.jpg)
+![image](Images/table_from_popular_hiking.jpg)
 
 In the above table, we have the __Date__, __Site__, and __Count__ of each measurement, as usual. We also see the __MaxT__ feature, which was added using a __LEFT JOIN__ to join the __Phoenix_Sky_Harbor_Daily_Temps__ data set. We also have two other new features.
 
@@ -192,7 +193,7 @@ From __popular_hiking_aggregate.sql__ :
 	LEFT JOIN monthly_temp ON agg_counts.MonthYear_Count = monthly_temp.MonthYear_Temp
 	ORDER BY MonthYear_Count
 
-![image](Misc/table_from_popular_hiking_agg.jpg)
+![image](Images/table_from_popular_hiking_agg.jpg)
 
 The above SQL query uses the __WITH__ clause to create three sub-query tables: __clean_records__, __agg_counts__, and  __monthly_temp__. 
 
@@ -208,6 +209,11 @@ The reason we compute this aggregated table is to clean the records. Since the s
 
 ## Visualization with Tableau
 
+See the [Phoenix Hiking Viz](https://public.tableau.com/views/PhoenixHikingViz/PopularHiking?:language=en-US&:display_count=n&:origin=viz_share_link) on my Tableau Public profile
+
+![image](Images/story_1.jpg)
+
+![image](Images/story_2.jpg)
 
 
 ## References
