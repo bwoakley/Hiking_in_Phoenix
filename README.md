@@ -15,12 +15,14 @@ Additionally, we enrich this data set by joining a table containing the daily we
 
 ## Files
 The GitHub page for this project contains the following files. All code is written in SQL Server (version 16.0.1000).
-- [ ] __popular_hiking.sql__ : Main file that extracts the most popular hiking trails and joins with the weather data
-- [ ] __popular_hiking_aggregate.sql__ : Main file that returns the monthly average trail counts and monthly average max temperature
-- [ ] __popular_hiking_weekend__ :
-- [ ] __Misc\EDA1.sql__ - __Misc\EDA6.sql__ : SQL queries conducting Exploratory Data Analysis
-- [ ] __Hiking_Trails_Counter.csv__ : Hiking Trails Counter data set
-- [ ] __Phoenix_Sky_Harbor_Daily_Temps.csv__ : Phoenix Sky Harbor Daily Temps data set
+- [ ] __SQL_code__ folder :
+	- [ ] __popular_hiking*.sql__ : Main SQL files that extract the most popular hiking trails, join with the weather data, and perform various feature engineering
+- [ ] __EDA_SQL__ folder :
+	- [ ] __EDA1.sql__ ... __EDA6.sql__ : SQL queries conducting Exploratory Data Analysis
+- [ ] __Datasets__ folder :
+	- [ ] __Hiking_Trails_Counter.csv__ : Hiking Trails Counter data set
+	- [ ] __Phoenix_Sky_Harbor_Daily_Temps.csv__ : Phoenix Sky Harbor Daily Temps data set
+	- [ ] __popular_hiking*.csv__ : Tables generated from the SQL queries in the __SQL_code__ folder
 
 ## The Data Sets
 
@@ -35,11 +37,11 @@ Each row of __Phoenix_Sky_Harbor_Daily_Temps.csv__ is a summary of the temperatu
 
 ## Exploratory Data Analysis (EDA) with SQL
 
-The files __Misc\EDA1.sql__, __Misc\EDA2.sql__, ...,  __Misc\EDA6.sql__ contain various SQL queries that explore the data and help define the scope of the project. We now outline some notable insights in the EDA files.
+The files __EDA1.sql__, __EDA2.sql__, ...,  __EDA6.sql__ contain various SQL queries that explore the data and help define the scope of the project. We now outline some notable insights in the EDA files.
 
 
 
-From __Misc\EDA1.sql__ :
+From __EDA1.sql__ :
 
 	SELECT dbo.hiking.Site, COUNT(*) as 'Num_measured'
 	FROM dbo.hiking
@@ -54,7 +56,7 @@ The above query uses the __GROUP BY__ statement to count the number of rows (mea
 From this query, we see that there are 397 unique sites. Notice that many of the Sites are related. For example, "E - Dreamy Draw Park -Trail 100" and "E - Dreamy Draw Park -Trail 101" are in the same park, but they are different trails. 
 
 
-From __Misc\EDA3.sql__ :
+From __EDA3.sql__ :
 
 	
 	SELECT COUNT(dbo.hiking.Date) AS 'Num of sites measured', dbo.hiking.Date  
@@ -74,7 +76,7 @@ Second, we also notice that the city researchers originally began with 46 sensor
 
 We are starting to understand the scope of the data set. We will now choose to narrow the focus of this project to study just a small number of the most popular trails. The following query computes the most popular trails:
 
-From __Misc\EDA5.sql__ :
+From __EDA5.sql__ :
 
 
 	-- Compute the most popular trails
@@ -110,7 +112,7 @@ The output of this query shows the most popular sites together with the number o
 
 ## Preprocessing and Cleaning with SQL
 
-Now that we have finished our Exploratory Data Analysis, we will now need to preprocess and clean the data before it is ready to be loaded into Tableau for visualization. This work is done in our main SQL files, __popular_hiking.sql__  and  __popular_hiking_aggregate.sql__. We begin with __popular_hiking.sql__, which extracts the most popular hiking trails and joins with the weather data.
+Now that we have finished our Exploratory Data Analysis, we will now need to preprocess and clean the data before it is ready to be loaded into Tableau for visualization. This work is done in our main SQL files in the  __SQL_code__ folder. We begin with __popular_hiking.sql__, which extracts the most popular hiking trails and joins with the weather data.
 
 From __popular_hiking.sql__ :  
 
@@ -203,39 +205,24 @@ We join __agg_counts__ and __monthly_temp__ to produce a table that simply repor
 
 The reason we compute this aggregated table is to clean the records. Since the sensors are known to give inaccurate reports some days, we believe that aggregating the data will average out those inaccurate readings. The average __Count__ should more precisely reflect the true __Count__ for each site. This allows for a better linear regression fit (depending on the site) with less noise, as we will see in our "Visualization with Tableau" section below.
 
-
+The other two files in the __SQL_code__ folder use similar SQL queries. Namely, __popular_hiking_weekend.sql__ computes the average hiker __Count__ on weekdays versus weekends, aggregated monthly. Lastly, __popular_hiking_aggregateTemp__ computes the average hiker __Count__ aggregated over __Site__ and __MaxT__. 
 
 
 
 ## Visualization with Tableau
 
-See the [Phoenix Hiking Viz](https://public.tableau.com/views/PhoenixHikingViz/PopularHiking?:language=en-US&:display_count=n&:origin=viz_share_link) on my Tableau Public profile
+See the [Phoenix Hiking Viz](https://public.tableau.com/views/PhoenixHikingViz/PopularHiking?:language=en-US&:display_count=n&:origin=viz_share_link) on my Tableau Public profile. This visualization is a story with two pages. The first page is:
 
 ![image](Images/story_1.jpg)
 
+We now wish to discuss the insights gained from this page of the visualization.
+
+The second page of the story is:
+
 ![image](Images/story_2.jpg)
 
+Concerning the insights gained from this page of the visualization.
 
 ## References
 - [ ] The Hiking Trails Counter data set is found at: [City of Phoenix's Open Data Portal](https://www.phoenixopendata.com/dataset/hiking-trail-usage/resource/aa4e2a08-c0ad-4fc4-bee9-44c2d85a58fa)
 - [ ]  The Phoenix Sky Harbor Daily Temps data set is found at: [City of Mesa's Data Portal](https://citydata.mesaaz.gov/Environmental-and-Sustainability/Phoenix-Sky-Harbor-Daily-Temps/5auc-zhuc)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
