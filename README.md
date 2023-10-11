@@ -211,7 +211,9 @@ The other two files in the __SQL_code__ folder use similar SQL queries. Namely, 
 
 ## Visualization with Tableau
 
-See the [Phoenix Hiking Viz](https://public.tableau.com/views/PhoenixHikingViz/PopularHiking?:language=en-US&:display_count=n&:origin=viz_share_link) on my Tableau Public profile. This visualization is a story with two pages. The first page is:
+See the [Phoenix Hiking Viz](https://public.tableau.com/views/PhoenixHikingViz/PopularHiking?:language=en-US&:display_count=n&:origin=viz_share_link) on my Tableau Public profile. This visualization is a story with two pages, and it is interactive. It would be best to view and interact with the story dashboard on my Tableau Public page, but for purposes of this write-up, we will now look at still images of the visualization.
+
+The first page is:
 
 ![image](Images/story_1.jpg)
 
